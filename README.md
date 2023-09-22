@@ -138,10 +138,10 @@ e selecionara quanto tempo ficou parado naquele local e por fim se necessário, 
 
 <img alt="screen-3" width="400" src="https://datafarm-job-opportunity.s3.sa-east-1.amazonaws.com/doc/screen-3-v2.png"/>
 
- * Os boões de relógio e lista na parte inferior do app deve ser usado para navegar entre as telas de listagem e registro de nova parada.
+ * Os botões de relógio e lista na parte inferior do app deve ser usado para navegar entre as telas de listagem e registro de nova parada.
 
 
-##### (**Optional - Diferencial**)
+## (**Optional - Diferencial**)
 
   Em codições reais nas operações em campo quase sempre não possuem o acesso a internet, esta tarefa consistem em transformar este app para rodar de forma totalmente offine.
   O fluxo então seria da seguinte forma:
