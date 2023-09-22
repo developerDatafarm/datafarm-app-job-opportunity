@@ -25,14 +25,15 @@ como inspiração bem como responder algumas duvidas que possam surgir de compor
 
 ###
 
+###
+
 **domínio das apis (host)**: `https://job.minhafazenda.ag`
 
 ##### Importante: A aplicação deve utilizar React-Native sem o uso de ferramentas como Expo. O domínio do build também é um requisito de avaliação.
 
-O App possue três telas:
 
 ## Tela 1 - Login
-  * A tela de login dele levar o logo do DataFarm ([/assets/logo-datafarm.png](https://github.com/developerDatafarm/datafarm-app-job-opportunity/blob/main/assets/logo-datafarm.png)) e os campos de usuário e senha
+  * A tela de login deve levar o logo do DataFarm ([/assets/logo-datafarm.png](https://github.com/developerDatafarm/datafarm-app-job-opportunity/blob/main/assets/logo-datafarm.png)) e os campos de usuário e senha
   * O usuário e senha para acesso foi fornecido no email que você recebeu para esta atividade
   * A autenticação deve ser feita usando o endpoint `/api/auth/v2`, este endpoint recebe um método post passando o email, senha e idPartner. O idPartner é fixo `372`.
 O resultado deste endpoint será um Token que será usado em todos os outros endpoint passando sempre no `header` com a chave `authorization`. 
