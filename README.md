@@ -45,7 +45,7 @@ fetch(`https://job.minhafazenda.ag/api/auth/v2`, {
     });
 ```
 
-<img alt="screen-1" width="300" src="https://job.datafarm.app/doc/field-menu.png"/>
+<img alt="screen-1" width="300" src="https://github.com/developerDatafarm/datafarm-app-job-opportunity/blob/main/assets/screen-1.png"/>
 
 
 
