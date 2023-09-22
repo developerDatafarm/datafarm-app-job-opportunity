@@ -15,14 +15,26 @@ as paradas de uma operação agrícola, ou seja, quando uma maquína no campo es
 parar a operação para fazer alguma manutenção na maquina, almoçar ou muitas vezes um problema climático como uma chuva pode 
 parar uma operação. Este app então será como um "diário" de tudo que aconteceu no campo.
 
+As funcionalidades desta atividade foram extraídas de uma aplicação real, esta aplicação pode ser baixada e pode ser usada 
+como inspiração bem como responder algumas duvidas que possam surgir de comportamento das funcionalidades.
+
+### DataFarm Máquinas
+[Google Play](https://play.google.com/store/apps/details?id=com.br.datafarm.machines&pcampaignid=web_share) |
+[App Store](https://apps.apple.com/ie/app/datafarm-m%C3%A1quinas/id6450794801?platform=iphone)
+
+
+###
+
+**domínio das apis (host)**: `https://job.minhafazenda.ag`
+
+##### Importante: A aplicação deve utilizar React-Native sem o uso de ferramentas como Expo. O domínio do build também é um requisito de avaliação.
+
 O App possue três telas:
 
-**domínio das apis (host)**: `https://job.minhafazenda.ag` 
-
-* **(Tela de Login)**
+## Tela 1 - Login
   * A tela de login dele levar o logo do DataFarm ([/assets/logo-datafarm.png](https://github.com/developerDatafarm/datafarm-app-job-opportunity/blob/main/assets/logo-datafarm.png)) e os campos de usuário e senha
   * O usuário e senha para acesso foi fornecido no email que você recebeu para esta atividade
-  * A autenticação deve ser feita usando o endpoint `/api/auth/v2`, este endpoint recebe um metodo post passando o email, senha e idPartner. O idPartner é fixo `372`.
+  * A autenticação deve ser feita usando o endpoint `/api/auth/v2`, este endpoint recebe um método post passando o email, senha e idPartner. O idPartner é fixo `372`.
 O resultado deste endpoint será um Token que será usado em todos os outros endpoint passando sempre no `header` com a chave `authorization`. 
   
 ```javascript
@@ -44,99 +56,106 @@ fetch(`https://job.minhafazenda.ag/api/auth/v2`, {
      const token = data.data.token;
     });
 ```
-
-<img alt="screen-1" width="300" src="https://github.com/developerDatafarm/datafarm-app-job-opportunity/blob/main/assets/screen-1.png"/>
-
+<img alt="screen-1" width="400" src="https://datafarm-job-opportunity.s3.sa-east-1.amazonaws.com/doc/screen-1-v1.png"/>
 
 
+## Tela 2 - Registro de parada
 
-Quando entrar no endereço será aberto uma janela para adicionar o seu código 
-fornecido previamente ex: `172e77d8-6da8-4074-93d1-ede238f80785`.
-
-<img alt="insert-code" width="400" src="https://job.datafarm.app/doc/insert-code.png"/>
-
-Este código será encaminhado em todas as chamadas e é o que possibilida ter acesso as apis desta atividade.
-
-*Você poderá ver mais detalhes na implementação do inteceptor em* `src/app/core/application/interceptor/application.interceptor.ts`.
-
-*Também poderá ter acesso ao exemplo da aplicação base no endereço [job.datafarm.app](https://job.datafarm.app)*.
-
-*A documentação pode ser encontrada no endereço [job.datafarm.app/api/swagger](https://job.datafarm.app/api/swagger)*
-
-*Endpoint base para as apis - https://job.datafarm.app/*
-
-### Atividade 1
-
-O mapa possui dois botões de ação e o contorno de um talhão (*inglês: Field* | **região dentro de uma fazenda**)
-
-<img alt="field-menu" width="300" src="https://job.datafarm.app/doc/field-menu.png"/>
-
-A atividade consiste em quando clicar no botão **verde** deverá abrir uma janela (*modal*) com as informações do 
-talhão como nome do Produtor (*grower*) da Fazenda (*farm*) e do próprio talhão. Esta janela deverá ter um CRUD 
-destas informações e deverá fazer uso do endpoint `/api/field/{idField}` para recuperar e persistir os campos.
-Também deverá conter na janela um dashboard que pode ser consultado no endpoint `/api/field/{idField}/dashboard`.
-Este dashboard contém 3 gráficos:
-
-- `evolution`: **Gráfico de evolução de pragas** este gráfico deverá ser no formato de linhas.
-- `rain`: **Gráfico de chuva** este gráfico deverá ser no formato de barras e no eixo x deverá ser relativo aos dias que choveram.
-- `efficiency`: **Gráfico de eficiência produtiva** este gráfico deverá ser no formato de pizza.
-
-Exemplo do mock da Janela:
-
-<img alt="insert-code" width="600" src="https://job.datafarm.app/doc/modal.png"/>
-
-*Imagens reais do sistema para inspiração*:
-
-#### Fique livre pela escolha da biblioteca para os gráficos. 
-#### Os gráficos a seguir foram feitos com a biblioteca [Chart.js](https://www.chartjs.org/) 
-
--------------------------------------
-
-<img alt="yieldgap" width="600" src="https://job.datafarm.app/doc/yieldgap-1.png"/>
-
--------------------------------------
-
-<img alt="yieldgap" width="600" src="https://job.datafarm.app/doc/yieldgap-2.png"/>
-
--------------------------------------
-
-<img alt="yieldgap" width="600" src="https://job.datafarm.app/doc/crop-window.png"/>
+  * Na tela de registro de parada o usuário deve escolher um talhão (*inglês: field* | **região dentro de uma fazenda**) de uma fazenda (*farm*).
+Escolhido o talhão, o usuário irá escolher uma das maquinhas daquele produtor (*grower*) pois a mesma maquina pode ser usada em varias fazendas daquele produtor.
 
 
-### Atividade 2 
+Exemplo de um talhão na vida real:
+
+<img alt="example-field" width="300" src="https://datafarm-job-opportunity.s3.sa-east-1.amazonaws.com/doc/field-example.png">
+
+*(SC 01, SC 02... são talhões da fazenda Santa Cristina do produtor Carlos Alberto)*
+
+  * Após dizer qual talhão e maquina, o usuário então poderá escolher qual o motivo daquela parada ex.: abastecimento
+e selecionara quanto tempo ficou parado naquele local e por fim se necessário, adicionar uma nota (texto livre) desta parada.
+
+<img alt="screen-2" width="400" src="https://datafarm-job-opportunity.s3.sa-east-1.amazonaws.com/doc/screen-2.png"/>
+
+  * Os recursos como fazenda, talhões, maquinas e quais os motivos de paradas possiveis, podem ser obtidos pelo endpoint `/mobile/machine/resources` 
+
+```json5
+// GET https://job.minhafazenda.ag/mobile/machine/resources
+// response:
+{
+  partner: {id: 372, name: 'Job Opportunity'}, // informações sobre o partner (representa esta atividade)
+  user: {
+    // informações do usuário
+  },
+  resources: {
+    machineries: [
+      {id: 5356,
+       name: 'CL 045 - S690',
+       serialNumber: '1CQS690ACK0125217',
+       growerId: 10944}
+    ],
+    farms: [
+      {id: 17135, name: 'Alvorada', 
+       growerId: 10944, growerName: 'Carlos Alberto',
+       fields: [
+         {id: 108911, name: 'VS 01'}
+        ]
+      }
+    ],
+    reasons: [
+      {
+        id: 1,
+        name: 'Abastecimento de combustível',
+        icon: 'M192 160c0-17.673 14.327-32 32-32v0h320c17.673 0 32 14.327 32 32v0 320c0 17.673-14.327 32-32 32v0h-320c-17.673 0-32-14.327-32-32v0-320z M64 128c0-70.692 57.308-128 128-128v0h384c70.692 0 128 57.308 128 128v0 512c70.692 0 128 57.308 128 128v0 32c0 17.673 14.327 32 32 32s32-14.327 32-32v0-288h-32c-17.673 0-32-14.327-32-32v0-200c0-17.673 14.327-32 32-32v0h95.68c-0.704-30.464-3.392-57.216-12.864-78.208-5.232-12.379-13.961-22.429-24.945-29.158l-0.271-0.154c-11.776-7.040-29.696-12.48-57.6-12.48-17.673 0-32-14.327-32-32s14.327-32 32-32v0c36.096 0 66.176 7.040 90.368 21.504 24.512 14.592 40.576 35.264 50.816 58.048 18.88 41.92 18.816 93.76 18.816 133.184v203.2c0 0.019 0 0.041 0 0.064 0 17.673-14.327 32-32 32-0 0-0-0-0-0l-32-0v288c0 53.019-42.981 96-96 96s-96-42.981-96-96v0-32c0-35.346-28.654-64-64-64v0 256h32c17.673 0 32 14.327 32 32s-14.327 32-32 32v0h-704c-17.673 0-32-14.327-32-32s14.327-32 32-32v0h32v-832zM640 128c0-35.346-28.654-64-64-64v0h-384c-35.346 0-64 28.654-64 64v0 832h512v-832z'
+      }
+    ]
+  }
+}
+```
+
+ * Para salvar esta parada deve ser utilizado o endpoint `/mobile/machine/stop-register/registry`, este endpoint recebe um método post com os seguintes campos:
+
+```json5
+// POST https://job.minhafazenda.ag/mobile/machine/stop-register/registry
+// request:
+{
+  uuid: 'f400bf91-916d-403b-8fe9-29496bf05a07', // id da parada
+  note: null,
+  idFarm: 17135,
+  idField: 108911,
+  idReason: 1,
+  idMachinery: 5356,
+  minutes: 10, // tempo total da parada em minutos
+  longitude: -55.12, // longitude do local da parada
+  latitude: -13.55   // latitude do local da parada
+}
+```
+
+
+## Tela 3 - Listagem *local* das paradas 
+
+ * O app deve conter uma copia local de todas as paradas já registradas naquele dispositivo, e a terceira tela deve listar estas paradas.
+
+<img alt="screen-3" width="400" src="https://datafarm-job-opportunity.s3.sa-east-1.amazonaws.com/doc/screen-3-v2.png"/>
+
+ * Os boões de relógio e lista na parte inferior do app deve ser usado para navegar entre as telas de listagem e registro de nova parada.
+
 
 ##### (**Optional - Diferencial**)
 
-Adicionar os outros talhões da fazenda usando o endpoint `/api/farm`, 
-este endpoint irá retornar os outros contornos no formato GeoJSON no campo `fields`, 
-estes talhões devem ser ativados com o click sobre eles no mapa e deverá respeitar a lógica da atividade 1, 
-ou seja, quando clicar no botão **verde** deverá retornar o CRUD do talhão e o 
-dashboard daquele talhão selecionado. E o botão vermelho deverá remover o contorno daquele talhão do mapa.
+  Em codições reais nas operações em campo quase sempre não possuem o acesso a internet, esta tarefa consistem em transformar este app para rodar de forma totalmente offine.
+  O fluxo então seria da seguinte forma:
+  * O usuario acessa o app na sede da fazenda (com acesso a internet) em seguida vai a campo com o celular registrando todas as paradas (offine), 
+no final do dia ele retorna a sede da fazenda e realiza o sincronismo com o backend usando as apis*
+
+###### *a api `/mobile/machine/resources` pode receber as paradas em lote
 
 -----------------------
 
 # Submissão das atividades
 
-Para submeter as atividades faça o build do projeto com o comando:
+Para submeter as atividades faça o build do projeto para a versão android usando o formato de `apk`, 
+envie a apk como anexo para o email que recebeu o convite para esta etapa.
 
-```shell
-npm run build
-```
-
-Remova a pasta `node_modules`, `.angular` e comprima o projeto todo em formato `.zip`,
-esta escolha para submissão das atividades garante a sua privacidade.
-
-Ex.: 
-```shell
-npm run build
-rm -r node_modules
-rm -r .angular
-zip -r datafarm-job-opportunity.zip .
-``` 
-
-Com o Arquivo `.zip` acesse [job.datafarm.app/submission](https://job.datafarm.app/submission),
-preencha com o seu código fornecido e carregue o arquivo zip. 
-
-<img alt="yieldgap" width="350" src="https://job.datafarm.app/doc/submission.png"/>
+Após enviar a apk para o email, compartilhe o seu código com **[Patrick Rogger Garcia](https://github.com/PatrickRogger)** através do [GitHub](https://github.com/PatrickRogger):
 
 #### BOA SORTE!!!
