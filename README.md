@@ -143,7 +143,7 @@ e selecionara quanto tempo ficou parado naquele local e por fim se necessário, 
 
 ## (**Optional - Diferencial**)
 
-  Em codições reais nas operações em campo quase sempre não possuem o acesso a internet, esta tarefa consistem em transformar este app para rodar de forma totalmente offine.
+  Em condições reais nas operações em campo quase sempre não possuem o acesso a internet, esta tarefa consistem em transformar este app para rodar de forma totalmente offine.
   O fluxo então seria da seguinte forma:
   * O usuario acessa o app na sede da fazenda (com acesso a internet) em seguida vai a campo com o celular registrando todas as paradas (offine), 
 no final do dia ele retorna a sede da fazenda e realiza o sincronismo com o backend usando as apis*
