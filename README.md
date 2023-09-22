@@ -157,6 +157,6 @@ no final do dia ele retorna a sede da fazenda e realiza o sincronismo com o back
 Para submeter as atividades faça o build do projeto para a versão android usando o formato de `apk`, 
 envie a apk como anexo para o email que recebeu o convite para esta etapa.
 
-Após enviar a apk para o email, compartilhe o seu código com **[Patrick Rogger Garcia](https://github.com/PatrickRogger)** através do [GitHub](https://github.com/PatrickRogger):
+Após enviar a apk para o email, compartilhe o seu código com **[Patrick Rogger Garcia](https://github.com/PatrickRogger)** através do [GitHub](https://github.com/PatrickRogger)
 
 #### BOA SORTE!!!
