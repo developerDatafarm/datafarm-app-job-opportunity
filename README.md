@@ -17,10 +17,35 @@ parar uma operação. Este app então será como um "diário" de tudo que aconte
 
 O App possue três telas:
 
+**domínio das apis (host)**: `https://job.minhafazenda.ag` 
+
 * **(Tela de Login)**
-  * A tela de login dele levar o logo do DataFarm (disponivel neste repositório) 
+  * A tela de login dele levar o logo do DataFarm ([/assets/logo-datafarm.png](https://github.com/developerDatafarm/datafarm-app-job-opportunity/blob/main/assets/logo-datafarm.png)) e os campos de usuário e senha
+  * O usuário e senha para acesso foi fornecido no email que você recebeu para esta atividade
+  * A autenticação deve ser feita usando o endpoint `/api/auth/v2`, este endpoint recebe um metodo post passando o email, senha e idPartner. O idPartner é fixo `372`.
+O resultado deste endpoint será um Token que será usado em todos os outros endpoint passando sempre no `header` com a chave `authorization`. 
+  
+```javascript
+fetch(`https://job.minhafazenda.ag/api/auth/v2`, {
+  method: `POST`,
+  headers: {
+   'Content-Type': 'application/json',
+   Accept: '*/*'
+  },
+  body: JSON.stringify({
+   email: 'exemplo@email.com',
+   senha: 'senha1234',
+   idPartner: 372
+  })
+})
+  .then((response) => response.json())
+  .then((data) => {
+     console.log(data);
+     const token = data.data.token;
+    });
+```
 
-
+<img alt="screen-1" width="300" src="https://job.datafarm.app/doc/field-menu.png"/>
 
 
 
