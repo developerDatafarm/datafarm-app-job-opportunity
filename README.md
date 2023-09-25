@@ -148,7 +148,7 @@ e selecionara quanto tempo ficou parado naquele local e por fim se necessário, 
   * O usuario acessa o app na sede da fazenda (com acesso a internet) em seguida vai a campo com o celular registrando todas as paradas (offine), 
 no final do dia ele retorna a sede da fazenda e realiza o sincronismo com o backend usando as apis*
 
-###### *a api `/mobile/machine/resources` pode receber as paradas em lote
+###### *a api `/mobile/machine/stop-register/registry` pode receber as paradas em lote
 
 -----------------------
 
